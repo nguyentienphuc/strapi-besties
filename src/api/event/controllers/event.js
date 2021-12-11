@@ -23,15 +23,8 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
         try {
             const { id } = ctx.params;
             const { user } = ctx.state;
-
-            const team = await strapi.service('api::team.team').findOne(id, {
-                populate: {
-                    event: true
-                }
-            });
-            return await strapi.service('api::team.team').join({
-                eventId: team.event?.id,
-                teamId: team.id,
+            return await strapi.service('api::event.event').vote({
+                id: id,
                 userId: user.id
             });
         } catch (err) {
@@ -50,9 +43,9 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
     },
     async create(ctx) {
         try {
-            console.log(ctx.body);
+            const { body } = ctx.request;
             return {
-                data: await super.create(ctx)
+                data: await strapi.service('api::event.event').create({ data: body })
             };
         } catch (err) {
             return ctx.badRequest('Có lỗi xảy ra', err);
