@@ -48,6 +48,7 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
                   })
             };
         } catch (err) {
+            console.log("eror="+JSON.stringify(err))
             return ctx.badRequest('Có lỗi xảy ra', err);
         }
     }

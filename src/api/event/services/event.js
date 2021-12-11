@@ -58,10 +58,15 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
       }
         const { results } = await strapi.service('api::event.event').find({
             filters: done?filtersDone:filtersNotDone
-          , populate: ['event_users', 'votes','picture'],
+          , populate: ['event_users','event_users.users_permissions_user', 'votes','picture'],
             orderBy:{ end: 'desc' }
         });
-        return results;
+        return results.map(e=> ({
+        ...e,
+        totalMale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'MALE')?.length || 0,
+        totalFemale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
+        totalVote:   e.votes?.length
+      }));
     }
 }));
 
