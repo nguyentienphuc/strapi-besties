@@ -72,12 +72,6 @@
     "departmentCode": {
       "type": "string"
     },
-    "team_users": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::team-user.team-user",
-      "mappedBy": "users_permissions_user"
-    },
     "event_users": {
       "type": "relation",
       "relation": "oneToMany",
