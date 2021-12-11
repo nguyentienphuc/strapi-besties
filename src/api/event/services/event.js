@@ -15,6 +15,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
     },
     async all(args) {
         const { userId } = args;
+        const baseUrl = strapi.config.server.url;
         const { results } = await strapi.service('api::event.event').find({
             filters: {
                 end: {
@@ -25,13 +26,14 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                 pageSize: 100,
                 page: 0
             },
-            populate: ['event_users', 'event_users.users_permissions_user', 'event_users.picture', 'votes']
+            populate: ['picture', 'event_users', 'event_users.users_permissions_user', 'event_users.picture', 'votes']
         });
         return results
             .filter(e => !e.event_users.some(e1 => e1.users_permissions_user.id === userId))
             .filter(e => e.event_users.length < e.max)
             .map(e => ({
                 ...e,
+                imageUrl: baseUrl + e.picture?.formats?.thumbnail?.url,
                 totalMale: e.event_users?.filter(e1 => e1.users_permissions_user.gender === 'MALE')?.length || 0,
                 totalFemale: e.event_users?.filter(e1 => e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
             }));
@@ -39,6 +41,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
     async votes(args) {
         const today = new Date();
         const previous = new Date().setDate(today.getDate() - 3);
+        const baseUrl = strapi.config.server.url;
         const { userId } = args;
         const { results } = await strapi.service('api::event.event').find({
             filters: {
@@ -51,15 +54,15 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                 pageSize: 100,
                 page: 0
             },
-            populate: ['event_users', 'event_users.users_permissions_user', 'event_users.picture', 'votes']
+            populate: ['picture', 'event_users', 'event_users.users_permissions_user', 'event_users.picture', 'votes']
         });
-        console.log(results);
         return results
             .filter(e => e.event_users.filter(e1 => !!e1.picture).length > 0)
             .map(e => ({
                 ...e,
+                imageUrl: baseUrl + e.picture?.formats?.thumbnail?.url,
                 voted: e.votes.some(e1 => e1.users_permissions_user.id === userId),
-                pictures: e.event_users.filter(e1 => !!e1.picture).map(e1 => e1.picture),
+                pictures: e.event_users.filter(e1 => !!e1.picture).map(e1 => baseUrl + e1?.picture?.formats?.thumbnail?.url),
                 totalMale: e.event_users.filter(e1 => e1.users_permissions_user.gender === 'MALE')?.length,
                 totalFemale: e.event_users.filter(e1 => e1.users_permissions_user.gender === 'FEMALE')?.length,
                 totalVote: e.votes.length,
@@ -99,39 +102,39 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
         const { userId, done } = args
         const currentDate = new Date()
         const filtersDone = {
-          $and: [{
-            event_users: {
-              users_permissions_user: {
-                id: userId
-              }
-            }
-          },
+            $and: [{
+                event_users: {
+                    users_permissions_user: {
+                        id: userId
+                    }
+                }
+            },
             {
-              end: {
-                $gt: currentDate
-              }
+                end: {
+                    $gt: currentDate
+                }
             }]
 
         }
-      const filtersNotDone = {
-        $and: [{
-          event_users: {
-            users_permissions_user: {
-              id: userId
-            }
-          }
-        },
-          {
-            end: {
-              $lt: currentDate
-            }
-          }]
+        const filtersNotDone = {
+            $and: [{
+                event_users: {
+                    users_permissions_user: {
+                        id: userId
+                    }
+                }
+            },
+            {
+                end: {
+                    $lt: currentDate
+                }
+            }]
 
-      }
+        }
         const { results } = await strapi.service('api::event.event').find({
-            filters: done?filtersDone:filtersNotDone
-          , populate: ['event_users','event_users.picture','event_users.users_permissions_user', 'votes','votes.picture','picture'],
-            orderBy:{ end: 'desc' }
+            filters: done ? filtersDone : filtersNotDone
+            , populate: ['event_users', 'event_users.picture', 'event_users.users_permissions_user', 'votes', 'votes.picture', 'picture'],
+            orderBy: { end: 'desc' }
         })
        const baseUrl = strapi.config.server.url
         return results.map(e=> ({
