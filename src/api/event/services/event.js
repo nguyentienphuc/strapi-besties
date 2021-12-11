@@ -137,16 +137,16 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
             , populate: ['event_users', 'event_users.picture', 'event_users.users_permissions_user', 'votes', 'votes.picture', 'picture'],
             orderBy: { end: 'desc' }
         })
-        const baseUrl = strapi.config.server.url
-        return results.map(e => ({
-            ...e,
-            totalMale: e.event_users?.filter(e1 => e1.users_permissions_user.gender === 'MALE')?.length || 0,
-            totalFemale: e.event_users?.filter(e1 => e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
-            totalVote: e.votes?.length,
-            imageUrl: strapi.config.server.url + e.picture?.formats?.medium?.url,
-            joinerImageUrls: e.event_users?.filter(e1 => e1.picture != null).
-                map(e1 => baseUrl + e1?.picture?.formats?.thumbnail?.url)
-        }));
+       const baseUrl = strapi.config.server.url
+        return results.map(e=> ({
+        ...e,event_users:undefined,votes:undefined,picture:undefined,
+        totalMale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'MALE')?.length || 0,
+        totalFemale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
+        totalVote:   e.votes?.length,
+        imageUrl: strapi.config.server.url+e.picture?.formats?.medium?.url,
+        joinerImageUrls : e.event_users?.filter(e1=>e1.picture!=null).
+        map(e1=>baseUrl+e1?.picture?.formats?.thumbnail?.url)
+      }));
     }
 }));
 
