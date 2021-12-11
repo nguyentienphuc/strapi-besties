@@ -33,7 +33,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
             .filter(e => e.event_users.length < e.max)
             .map(e => ({
                 ...e,
-                imageUrl: baseUrl + e.picture?.formats?.medium?.url,
+                imageUrl: baseUrl + e.picture?.formats?.thumbnail?.url,
                 totalMale: e.event_users?.filter(e1 => e1.users_permissions_user.gender === 'MALE')?.length || 0,
                 totalFemale: e.event_users?.filter(e1 => e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
             }));
@@ -56,12 +56,11 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
             },
             populate: ['picture', 'event_users', 'event_users.users_permissions_user', 'event_users.picture', 'votes']
         });
-        console.log(results);
         return results
             .filter(e => e.event_users.filter(e1 => !!e1.picture).length > 0)
             .map(e => ({
                 ...e,
-                imageUrl: baseUrl + e.picture?.formats?.medium?.url,
+                imageUrl: baseUrl + e.picture?.formats?.thumbnail?.url,
                 voted: e.votes.some(e1 => e1.users_permissions_user.id === userId),
                 pictures: e.event_users.filter(e1 => !!e1.picture).map(e1 => baseUrl + e1?.picture?.formats?.thumbnail?.url),
                 totalMale: e.event_users.filter(e1 => e1.users_permissions_user.gender === 'MALE')?.length,
@@ -143,7 +142,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
         totalMale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'MALE')?.length || 0,
         totalFemale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
         totalVote:   e.votes?.length,
-        imageUrl: strapi.config.server.url+e.picture?.formats?.medium?.url,
+        imageUrl: strapi.config.server.url+e.picture?.formats?.thumbnail?.url,
         joinerImageUrls : e.event_users?.filter(e1=>e1.picture!=null).
         map(e1=>baseUrl+e1?.picture?.formats?.thumbnail?.url)
       }));
