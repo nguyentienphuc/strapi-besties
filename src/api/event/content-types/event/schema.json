@@ -79,6 +79,12 @@
     },
     "categoryCode": {
       "type": "string"
+    },
+    "team_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team-user.team-user",
+      "mappedBy": "event"
     }
   }
 }
