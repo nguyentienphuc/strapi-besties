@@ -8,8 +8,8 @@ module.exports = {
   routes: [
     {
       method: 'GET',
-      path: '/events/:id/teams',
-      handler: 'api::event.event.teams',
+      path: '/events/all',
+      handler: 'api::event.event.all',
     },
     {
       method: 'GET',

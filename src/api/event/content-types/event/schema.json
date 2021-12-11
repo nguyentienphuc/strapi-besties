@@ -20,20 +20,6 @@
       "type": "string",
       "required": true
     },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "USER",
-        "TEAM"
-      ],
-      "default": "USER",
-      "required": true
-    },
-    "min": {
-      "type": "integer",
-      "min": 2,
-      "default": 2
-    },
     "max": {
       "type": "integer",
       "max": 1000,
@@ -54,16 +40,10 @@
     "picture": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
-    },
-    "teams": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::team.team",
-      "mappedBy": "event"
     },
     "event_users": {
       "type": "relation",
@@ -79,12 +59,6 @@
     },
     "categoryCode": {
       "type": "string"
-    },
-    "team_users": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::team-user.team-user",
-      "mappedBy": "event"
     }
   }
 }
