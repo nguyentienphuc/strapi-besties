@@ -105,7 +105,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
             orderBy:{ end: 'desc' }
         });
         return results.map(e=> ({
-        ...e,
+        ...e, event_users: null,
         totalMale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'MALE')?.length || 0,
         totalFemale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
         totalVote:   e.votes?.length
