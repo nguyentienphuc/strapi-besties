@@ -25,7 +25,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                 pageSize: 100,
                 page: 0
             },
-            populate: ['event_users', 'event_users.users_permissions_user', 'votes']
+            populate: ['event_users', 'event_users.users_permissions_user', 'event_users.picture', 'votes']
         });
         return results
             .filter(e => !e.event_users.some(e1 => e1.users_permissions_user.id === userId))
@@ -34,6 +34,35 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                 ...e,
                 totalMale: e.event_users?.filter(e1 => e1.users_permissions_user.gender === 'MALE')?.length || 0,
                 totalFemale: e.event_users?.filter(e1 => e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
+            }));
+    },
+    async votes(args) {
+        const today = new Date();
+        const previous = new Date().setDate(today.getDate() - 3);
+        const { userId } = args;
+        const { results } = await strapi.service('api::event.event').find({
+            filters: {
+                end: {
+                    $lt: today,
+                    $gt: previous,
+                }
+            },
+            pagination: {
+                pageSize: 100,
+                page: 0
+            },
+            populate: ['event_users', 'event_users.users_permissions_user', 'event_users.picture', 'votes']
+        });
+        console.log(results);
+        return results
+            .filter(e => e.event_users.filter(e1 => !!e1.picture).length > 0)
+            .map(e => ({
+                ...e,
+                voted: e.votes.some(e1 => e1.users_permissions_user.id === userId),
+                pictures: e.event_users.filter(e1 => !!e1.picture).map(e1 => e1.picture),
+                totalMale: e.event_users.filter(e1 => e1.users_permissions_user.gender === 'MALE')?.length,
+                totalFemale: e.event_users.filter(e1 => e1.users_permissions_user.gender === 'FEMALE')?.length,
+                totalVote: e.votes.length,
             }));
     },
     async join(args) {
