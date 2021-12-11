@@ -89,6 +89,15 @@
       "relation": "oneToMany",
       "target": "api::vote.vote",
       "mappedBy": "users_permissions_user"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "MALE",
+        "FEMALE",
+        "OTHER"
+      ],
+      "required": false
     }
   }
 }

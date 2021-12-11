@@ -2323,6 +2323,14 @@
                                                                                       }
                                                                                     }
                                                                                   },
+                                                                                  "gender": {
+                                                                                    "type": "string",
+                                                                                    "enum": [
+                                                                                      "MALE",
+                                                                                      "FEMALE",
+                                                                                      "OTHER"
+                                                                                    ]
+                                                                                  },
                                                                                   "createdAt": {
                                                                                     "type": "string",
                                                                                     "format": "date-time"
@@ -5637,6 +5645,14 @@
                                                                                     }
                                                                                   }
                                                                                 },
+                                                                                "gender": {
+                                                                                  "type": "string",
+                                                                                  "enum": [
+                                                                                    "MALE",
+                                                                                    "FEMALE",
+                                                                                    "OTHER"
+                                                                                  ]
+                                                                                },
                                                                                 "createdAt": {
                                                                                   "type": "string",
                                                                                   "format": "date-time"
@@ -8872,6 +8888,14 @@
                                                                                     }
                                                                                   }
                                                                                 },
+                                                                                "gender": {
+                                                                                  "type": "string",
+                                                                                  "enum": [
+                                                                                    "MALE",
+                                                                                    "FEMALE",
+                                                                                    "OTHER"
+                                                                                  ]
+                                                                                },
                                                                                 "createdAt": {
                                                                                   "type": "string",
                                                                                   "format": "date-time"
@@ -12094,6 +12118,14 @@
                                                                                       }
                                                                                     }
                                                                                   }
+                                                                                },
+                                                                                "gender": {
+                                                                                  "type": "string",
+                                                                                  "enum": [
+                                                                                    "MALE",
+                                                                                    "FEMALE",
+                                                                                    "OTHER"
+                                                                                  ]
                                                                                 },
                                                                                 "createdAt": {
                                                                                   "type": "string",
