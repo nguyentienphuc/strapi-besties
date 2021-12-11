@@ -65,6 +65,9 @@
     },
     "companyCode": {
       "type": "string"
+    },
+    "departmentCode": {
+      "type": "string"
     }
   }
 }

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2021-12-11T17:32:59.736Z"
+    "x-generation-date": "2021-12-11T18:29:22.478Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1920,6 +1920,9 @@
                                                         "companyCode": {
                                                           "type": "string"
                                                         },
+                                                        "departmentCode": {
+                                                          "type": "string"
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -2439,6 +2442,9 @@
                                 "type": "integer"
                               },
                               "companyCode": {
+                                "type": "string"
+                              },
+                              "departmentCode": {
                                 "type": "string"
                               },
                               "createdAt": {
@@ -4620,6 +4626,9 @@
                                                       "companyCode": {
                                                         "type": "string"
                                                       },
+                                                      "departmentCode": {
+                                                        "type": "string"
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -5139,6 +5148,9 @@
                               "type": "integer"
                             },
                             "companyCode": {
+                              "type": "string"
+                            },
+                            "departmentCode": {
                               "type": "string"
                             },
                             "createdAt": {
@@ -7252,6 +7264,9 @@
                                                       "companyCode": {
                                                         "type": "string"
                                                       },
+                                                      "departmentCode": {
+                                                        "type": "string"
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -7771,6 +7786,9 @@
                               "type": "integer"
                             },
                             "companyCode": {
+                              "type": "string"
+                            },
+                            "departmentCode": {
                               "type": "string"
                             },
                             "createdAt": {
@@ -9861,6 +9879,9 @@
                                                       "companyCode": {
                                                         "type": "string"
                                                       },
+                                                      "departmentCode": {
+                                                        "type": "string"
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -10382,6 +10403,9 @@
                             "companyCode": {
                               "type": "string"
                             },
+                            "departmentCode": {
+                              "type": "string"
+                            },
                             "createdAt": {
                               "type": "string",
                               "format": "date-time"
@@ -10676,6 +10700,9 @@
                         "type": "integer"
                       },
                       "companyCode": {
+                        "type": "string"
+                      },
+                      "departmentCode": {
                         "type": "string"
                       },
                       "createdAt": {
@@ -12811,6 +12838,9 @@
                                             "type": "integer"
                                           },
                                           "companyCode": {
+                                            "type": "string"
+                                          },
+                                          "departmentCode": {
                                             "type": "string"
                                           },
                                           "createdAt": {
@@ -15478,6 +15508,9 @@
                                         "companyCode": {
                                           "type": "string"
                                         },
+                                        "departmentCode": {
+                                          "type": "string"
+                                        },
                                         "createdAt": {
                                           "type": "string",
                                           "format": "date-time"
@@ -18125,6 +18158,9 @@
                                         "companyCode": {
                                           "type": "string"
                                         },
+                                        "departmentCode": {
+                                          "type": "string"
+                                        },
                                         "createdAt": {
                                           "type": "string",
                                           "format": "date-time"
@@ -20697,6 +20733,9 @@
                                           "type": "integer"
                                         },
                                         "companyCode": {
+                                          "type": "string"
+                                        },
+                                        "departmentCode": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -25865,6 +25904,9 @@
                                           "companyCode": {
                                             "type": "string"
                                           },
+                                          "departmentCode": {
+                                            "type": "string"
+                                          },
                                           "createdAt": {
                                             "type": "string",
                                             "format": "date-time"
@@ -28160,6 +28202,9 @@
                                         "companyCode": {
                                           "type": "string"
                                         },
+                                        "departmentCode": {
+                                          "type": "string"
+                                        },
                                         "createdAt": {
                                           "type": "string",
                                           "format": "date-time"
@@ -30426,6 +30471,9 @@
                                         "companyCode": {
                                           "type": "string"
                                         },
+                                        "departmentCode": {
+                                          "type": "string"
+                                        },
                                         "createdAt": {
                                           "type": "string",
                                           "format": "date-time"
@@ -32628,6 +32676,9 @@
                                           "type": "integer"
                                         },
                                         "companyCode": {
+                                          "type": "string"
+                                        },
+                                        "departmentCode": {
                                           "type": "string"
                                         },
                                         "createdAt": {

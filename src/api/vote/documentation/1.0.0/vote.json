@@ -1917,6 +1917,9 @@
                                           "companyCode": {
                                             "type": "string"
                                           },
+                                          "departmentCode": {
+                                            "type": "string"
+                                          },
                                           "createdAt": {
                                             "type": "string",
                                             "format": "date-time"
@@ -4212,6 +4215,9 @@
                                         "companyCode": {
                                           "type": "string"
                                         },
+                                        "departmentCode": {
+                                          "type": "string"
+                                        },
                                         "createdAt": {
                                           "type": "string",
                                           "format": "date-time"
@@ -6478,6 +6484,9 @@
                                         "companyCode": {
                                           "type": "string"
                                         },
+                                        "departmentCode": {
+                                          "type": "string"
+                                        },
                                         "createdAt": {
                                           "type": "string",
                                           "format": "date-time"
@@ -8680,6 +8689,9 @@
                                           "type": "integer"
                                         },
                                         "companyCode": {
+                                          "type": "string"
+                                        },
+                                        "departmentCode": {
                                           "type": "string"
                                         },
                                         "createdAt": {
