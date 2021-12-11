@@ -101,14 +101,17 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
       }
         const { results } = await strapi.service('api::event.event').find({
             filters: done?filtersDone:filtersNotDone
-          , populate: ['event_users','event_users.users_permissions_user', 'votes','picture'],
+          , populate: ['event_users','event_users.picture','event_users.users_permissions_user', 'votes','votes.picture','picture'],
             orderBy:{ end: 'desc' }
-        });
+        })
+       const baseUrl = strapi.config.server.url
         return results.map(e=> ({
-        ...e, event_users: null,
+        ...e, event_users: undefined,votes:undefined,
         totalMale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'MALE')?.length || 0,
         totalFemale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
-        totalVote:   e.votes?.length
+        totalVote:   e.votes?.length,
+        imageUrl: strapi.config.server.url+e.picture?.formats?.medium?.url,
+        joinerImageUrls : e.event_users?.map(e1=>baseUrl+e1?.event_users?.picture?.formats?.thumbnail?.url)
       }));
     }
 }));
