@@ -2531,6 +2531,9 @@
                                               }
                                             }
                                           },
+                                          "categoryCode": {
+                                            "type": "string"
+                                          },
                                           "createdAt": {
                                             "type": "string",
                                             "format": "date-time"
@@ -5810,6 +5813,9 @@
                                             }
                                           }
                                         },
+                                        "categoryCode": {
+                                          "type": "string"
+                                        },
                                         "createdAt": {
                                           "type": "string",
                                           "format": "date-time"
@@ -9071,6 +9077,9 @@
                                             }
                                           }
                                         },
+                                        "categoryCode": {
+                                          "type": "string"
+                                        },
                                         "createdAt": {
                                           "type": "string",
                                           "format": "date-time"
@@ -12258,6 +12267,9 @@
                                               }
                                             }
                                           }
+                                        },
+                                        "categoryCode": {
+                                          "type": "string"
                                         },
                                         "createdAt": {
                                           "type": "string",

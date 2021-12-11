@@ -2838,6 +2838,9 @@
                                                             }
                                                           }
                                                         },
+                                                        "categoryCode": {
+                                                          "type": "string"
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -3025,6 +3028,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "categoryCode": {
+                                "type": "string"
                               },
                               "createdAt": {
                                 "type": "string",
@@ -6173,6 +6179,9 @@
                                                           }
                                                         }
                                                       },
+                                                      "categoryCode": {
+                                                        "type": "string"
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -6360,6 +6369,9 @@
                                   }
                                 }
                               }
+                            },
+                            "categoryCode": {
+                              "type": "string"
                             },
                             "createdAt": {
                               "type": "string",
@@ -9461,6 +9473,9 @@
                                                           }
                                                         }
                                                       },
+                                                      "categoryCode": {
+                                                        "type": "string"
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -9648,6 +9663,9 @@
                                   }
                                 }
                               }
+                            },
+                            "categoryCode": {
+                              "type": "string"
                             },
                             "createdAt": {
                               "type": "string",
@@ -12705,6 +12723,9 @@
                                                           }
                                                         }
                                                       },
+                                                      "categoryCode": {
+                                                        "type": "string"
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -12892,6 +12913,9 @@
                                   }
                                 }
                               }
+                            },
+                            "categoryCode": {
+                              "type": "string"
                             },
                             "createdAt": {
                               "type": "string",
@@ -13203,6 +13227,9 @@
                           ],
                           "example": "string or id"
                         }
+                      },
+                      "categoryCode": {
+                        "type": "string"
                       },
                       "createdAt": {
                         "type": "string",

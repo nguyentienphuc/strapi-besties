@@ -52,12 +52,12 @@
       "required": true
     },
     "picture": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "teams": {
       "type": "relation",
@@ -76,6 +76,9 @@
       "relation": "oneToMany",
       "target": "api::vote.vote",
       "mappedBy": "event"
+    },
+    "categoryCode": {
+      "type": "string"
     }
   }
 }
