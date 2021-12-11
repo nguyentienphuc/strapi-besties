@@ -8,11 +8,4 @@ module.exports = [
   'strapi::body',
   'strapi::favicon',
   'strapi::public',
-  settings: {
-    cors: {
-      enabled: true, 
-      headers: '*', 
-      origin: ["http://besties.tonysmash.com/"],
-    },
-  },
 ];
