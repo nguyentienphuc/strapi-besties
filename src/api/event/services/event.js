@@ -106,7 +106,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
         })
        const baseUrl = strapi.config.server.url
         return results.map(e=> ({
-        ...e,
+        ...e,event_users:undefined,votes:undefined,picture:undefined,
         totalMale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'MALE')?.length || 0,
         totalFemale: e.event_users?.filter(e1=>e1.users_permissions_user.gender === 'FEMALE')?.length || 0,
         totalVote:   e.votes?.length,
