@@ -7,6 +7,37 @@
 const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::event.event', ({ strapi }) => ({
+    async join(ctx) {
+        try {
+            const { id } = ctx.params;
+            const { user } = ctx.state;
+            return await strapi.service('api::event.event').join({
+                id: id,
+                userId: user.id
+            });
+        } catch (err) {
+            return ctx.badRequest('Có lỗi xảy ra', err);
+        }
+    },
+    async vote(ctx) {
+        try {
+            const { id } = ctx.params;
+            const { user } = ctx.state;
+
+            const team = await strapi.service('api::team.team').findOne(id, {
+                populate: {
+                    event: true
+                }
+            });
+            return await strapi.service('api::team.team').join({
+                eventId: team.event?.id,
+                teamId: team.id,
+                userId: user.id
+            });
+        } catch (err) {
+            return ctx.badRequest('Có lỗi xảy ra', err);
+        }
+    },
     async findOne(ctx) {
         try {
             const { id } = ctx.params;
@@ -29,8 +60,9 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
     },
     async all(ctx) {
         try {
+            const { user } = ctx.state;
             return {
-                data: await strapi.service('api::event.event').all()
+                data: await strapi.service('api::event.event').all({ userId: user.id })
             };
         } catch (err) {
             return ctx.badRequest('Có lỗi xảy ra', err);
