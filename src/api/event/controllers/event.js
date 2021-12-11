@@ -38,9 +38,14 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
     },
     async mine(ctx) {
         try {
-            const { user } = ctx.state;
+            const { user } = ctx.state
+            const done =  ctx.query.done
             return {
-                data: await strapi.service('api::event.event').mine({ userId: user.id })
+                data: await strapi.service('api::event.event').mine(
+                  {
+                    userId: user.id,
+                    done : done
+                  })
             };
         } catch (err) {
             return ctx.badRequest('Có lỗi xảy ra', err);

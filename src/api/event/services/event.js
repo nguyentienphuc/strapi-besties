@@ -24,31 +24,42 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
         return results;
     },
     async mine(args) {
-        const { userId } = args;
-        const { results } = await strapi.service('api::event.event').find({
-            filters: {
-                $and: [{
-                    $or: [{
-                        team_users: {
-                            users_permissions_user: {
-                                id: userId
-                            }
-                        }
-                    },
-                    {
-                        event_users: {
-                            users_permissions_user: {
-                                id: userId
-                            }
-                        }
-                    }]
-                }, {
-                    end: {
-                        $gt: new Date()
-                    }
-                }]
+        const { userId, done } = args
+        const currentDate = new Date()
+        const filtersDone = {
+          $and: [{
+            event_users: {
+              users_permissions_user: {
+                id: userId
+              }
+            }
+          },
+            {
+              end: {
+                $gt: currentDate
+              }
+            }]
 
-            }, populate: ['event_users', 'votes']
+        }
+      const filtersNotDone = {
+        $and: [{
+          event_users: {
+            users_permissions_user: {
+              id: userId
+            }
+          }
+        },
+          {
+            end: {
+              $lt: currentDate
+            }
+          }]
+
+      }
+        const { results } = await strapi.service('api::event.event').find({
+            filters: done?filtersDone:filtersNotDone
+          , populate: ['event_users', 'votes','picture'],
+            orderBy:{ end: 'desc' }
         });
         return results;
     }
