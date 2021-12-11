@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "branchCode": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "USER",
+        "TEAM"
+      ],
+      "default": "USER",
+      "required": true
+    },
+    "min": {
+      "type": "integer",
+      "min": 2,
+      "default": 2
+    },
+    "max": {
+      "type": "integer",
+      "max": 1000,
+      "required": true
+    },
+    "start": {
+      "type": "datetime",
+      "required": true
+    },
+    "end": {
+      "type": "datetime",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "picture": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "teams": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team.team",
+      "mappedBy": "event"
+    },
+    "event_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::event-user.event-user",
+      "mappedBy": "event"
+    },
+    "votes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vote.vote",
+      "mappedBy": "event"
+    }
+  }
+}

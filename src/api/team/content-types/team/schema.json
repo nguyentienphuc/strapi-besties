@@ -4,7 +4,8 @@
   "info": {
     "singularName": "team",
     "pluralName": "teams",
-    "displayName": "Team"
+    "displayName": "Team",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,19 +13,43 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "description": {
+    "slogan": {
       "type": "string"
     },
     "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "teams"
+    },
+    "size": {
+      "type": "integer",
+      "required": true
+    },
+    "team_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::team-user.team-user",
+      "mappedBy": "team"
+    },
+    "votes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vote.vote",
+      "mappedBy": "team"
     }
   }
 }

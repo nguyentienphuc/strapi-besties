@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lookups",
+  "info": {
+    "singularName": "lookup",
+    "pluralName": "lookups",
+    "displayName": "Lookup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "group": {
+      "type": "string",
+      "required": true
+    },
+    "code": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
