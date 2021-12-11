@@ -7,21 +7,30 @@
 const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::event.event', ({ strapi }) => ({
-    async all(ctx) {
+    async findOne(ctx) {
         try {
+            const { id } = ctx.params;
             return {
-                data: await strapi.service('api::event.event').all()
+                data: await strapi.service('api::event.event').findOne(id)
             };
         } catch (err) {
             return ctx.badRequest('Có lỗi xảy ra', err);
         }
     },
-    async teams(ctx) {
+    async create(ctx) {
         try {
-            const { id } = ctx.params;
-            console.log(ctx.params);
+            console.log(ctx.body);
             return {
-                data: await strapi.service('api::event.event').teams({ id })
+                data: await super.create(ctx)
+            };
+        } catch (err) {
+            return ctx.badRequest('Có lỗi xảy ra', err);
+        }
+    },
+    async all(ctx) {
+        try {
+            return {
+                data: await strapi.service('api::event.event').all()
             };
         } catch (err) {
             return ctx.badRequest('Có lỗi xảy ra', err);

@@ -7,24 +7,19 @@
 const { createCoreService } = require('@strapi/strapi').factories;
 
 module.exports = createCoreService('api::event.event', ({ strapi }) => ({
+    async findOne(entityId, params) {
+        const result = await super.findOne(entityId, {
+            populate: ['event_users', 'votes']
+        });
+        return result;
+    },
     async all(args) {
         const { results } = await strapi.service('api::event.event').find({
             filters: {
                 end: {
                     $gt: new Date()
                 }
-            }, populate: ['teams', 'team_users', 'event_users']
-        });
-        return results;
-    },
-    async teams(args) {
-        const { id } = args;
-        const { results } = await strapi.service('api::team.team').find({
-            filters: {
-                event: {
-                    id: id
-                }
-            }, populate: ['event', 'team_users', 'votes']
+            }, populate: ['event_users', 'votes']
         });
         return results;
     },
@@ -53,7 +48,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                     }
                 }]
 
-            }, populate: ['teams', 'team_users', 'event_users']
+            }, populate: ['event_users', 'votes']
         });
         return results;
     }

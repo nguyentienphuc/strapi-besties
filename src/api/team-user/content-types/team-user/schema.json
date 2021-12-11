@@ -31,12 +31,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "event": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::event.event",
-      "inversedBy": "team_users"
     }
   }
 }

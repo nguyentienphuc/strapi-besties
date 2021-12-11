@@ -29,12 +29,6 @@
         "videos"
       ]
     },
-    "event": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::event.event",
-      "inversedBy": "teams"
-    },
     "size": {
       "type": "integer",
       "required": true
