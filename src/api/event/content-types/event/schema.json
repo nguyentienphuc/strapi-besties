@@ -18,7 +18,7 @@
     },
     "branchCode": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "max": {
       "type": "integer",
@@ -58,6 +58,12 @@
       "mappedBy": "event"
     },
     "categoryCode": {
+      "type": "string"
+    },
+    "rewardPoint": {
+      "type": "integer"
+    },
+    "companyCode": {
       "type": "string"
     }
   }
