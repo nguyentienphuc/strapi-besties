@@ -7,6 +7,30 @@
 const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::event.event', ({ strapi }) => ({
+    async join(ctx) {
+        try {
+            const { id } = ctx.params;
+            const { user } = ctx.state;
+            return await strapi.service('api::event.event').join({
+                id: id,
+                userId: user.id
+            });
+        } catch (err) {
+            return ctx.badRequest('Có lỗi xảy ra', err);
+        }
+    },
+    async vote(ctx) {
+        try {
+            const { id } = ctx.params;
+            const { user } = ctx.state;
+            return await strapi.service('api::event.event').vote({
+                id: id,
+                userId: user.id
+            });
+        } catch (err) {
+            return ctx.badRequest('Có lỗi xảy ra', err);
+        }
+    },
     async findOne(ctx) {
         try {
             const { id } = ctx.params;
@@ -19,9 +43,9 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
     },
     async create(ctx) {
         try {
-            console.log(ctx.body);
+            const { body } = ctx.request;
             return {
-                data: await super.create(ctx)
+                data: await strapi.service('api::event.event').create({ data: body })
             };
         } catch (err) {
             return ctx.badRequest('Có lỗi xảy ra', err);
@@ -29,8 +53,9 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
     },
     async all(ctx) {
         try {
+            const { user } = ctx.state;
             return {
-                data: await strapi.service('api::event.event').all()
+                data: await strapi.service('api::event.event').all({ userId: user.id })
             };
         } catch (err) {
             return ctx.badRequest('Có lỗi xảy ra', err);
