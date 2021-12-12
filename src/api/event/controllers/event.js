@@ -71,19 +71,27 @@ module.exports = createCoreController('api::event.event', ({ strapi }) => ({
             return ctx.badRequest('Có lỗi xảy ra', err);
         }
     },
+    async galary(ctx) {
+        try {
+            return {
+                data: await strapi.service('api::event.event').galary()
+            };
+        } catch (err) {
+            return ctx.badRequest('Có lỗi xảy ra', err);
+        }
+    },
     async mine(ctx) {
         try {
             const { user } = ctx.state
-            const done =  ctx.query.done
+            const done = ctx.query.done
             return {
                 data: await strapi.service('api::event.event').mine(
-                  {
-                    userId: user.id,
-                    done : done
-                  })
+                    {
+                        userId: user.id,
+                        done: done
+                    })
             };
         } catch (err) {
-            console.log("eror="+JSON.stringify(err))
             return ctx.badRequest('Có lỗi xảy ra', err);
         }
     }
