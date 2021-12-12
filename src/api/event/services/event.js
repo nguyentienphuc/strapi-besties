@@ -144,6 +144,17 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
               $lt: currentDate
             }
           }
+          ],
+          $or:[
+            {
+              event_users: {
+                tookIn: true
+              }
+            },{
+              end: {
+                $lt: currentDate
+              }
+            }
           ]
         }
         const filtersNotDone = {
@@ -153,17 +164,28 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                 id: userId
               }
             }
-          },
-            {
-              event_users: {
-                tookIn: false
-              }
-            },{
+          },{
               end: {
-                $lt: currentDate
+                $gt: currentDate
               }
+            },
+            {
+              $or:[
+                {
+                  event_users: {
+                    tookIn: false
+                  }
+                },{
+                  event_users: {
+                    tookIn: {
+                      $null:true
+                    }
+                  }
+                }
+              ]
             }
-          ]
+          ],
+
         }
         const { results } = await strapi.service('api::event.event').find({
             filters: done ? filtersDone : filtersNotDone
@@ -177,7 +199,7 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
             totalVote: e.votes?.length,
             imageUrl: getImageUrl(strapi, e.picture),
             joinerImageUrls: e.event_users?.filter(e1 => e1.picture != null).
-                map(e1 => getImageUrl(strapi, e1.picture))
+                map(e1 => getImageUrl(strapi, e1.picture)),
         }));
     },
     async took(args) {
