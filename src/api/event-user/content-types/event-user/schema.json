@@ -32,8 +32,9 @@
         "images"
       ]
     },
-    "done": {
-      "type": "boolean"
+    "tookIn": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

@@ -2312,7 +2312,7 @@
                                                 }
                                               }
                                             },
-                                            "done": {
+                                            "tookIn": {
                                               "type": "boolean"
                                             },
                                             "createdAt": {
@@ -5021,7 +5021,7 @@
                                               }
                                             }
                                           },
-                                          "done": {
+                                          "tookIn": {
                                             "type": "boolean"
                                           },
                                           "createdAt": {
@@ -7662,7 +7662,7 @@
                                               }
                                             }
                                           },
-                                          "done": {
+                                          "tookIn": {
                                             "type": "boolean"
                                           },
                                           "createdAt": {
@@ -10280,7 +10280,7 @@
                                               }
                                             }
                                           },
-                                          "done": {
+                                          "tookIn": {
                                             "type": "boolean"
                                           },
                                           "createdAt": {

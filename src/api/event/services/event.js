@@ -101,37 +101,44 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
     async mine(args) {
         const { userId, done } = args
         const currentDate = new Date()
+
         const filtersDone = {
-            $and: [{
-                event_users: {
-                    users_permissions_user: {
-                        id: userId
-                    }
-                },
-                done : true
+          $and:[{
+              event_users: {
+                users_permissions_user: {
+                  id: userId
+                }
+              }
             },
             {
-                end: {
-                    $lt: currentDate
-                }
-            }]
-
+              event_users: {
+                tookIn: true
+              }
+            },{
+            end: {
+              $lt: currentDate
+            }
+          }
+          ]
         }
         const filtersNotDone = {
-            $and: [{
-                event_users: {
-                    users_permissions_user: {
-                        id: userId
-                    }
-                },
-                done: false
-            },
+          $and:[{
+            event_users: {
+              users_permissions_user: {
+                id: userId
+              }
+            }
+          },
             {
-                end: {
-                    $gt: currentDate
-                }
-            }]
-
+              event_users: {
+                tookIn: false
+              }
+            },{
+              end: {
+                $lt: currentDate
+              }
+            }
+          ]
         }
         const { results } = await strapi.service('api::event.event').find({
             filters: done ? filtersDone : filtersNotDone
@@ -148,6 +155,31 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
             joinerImageUrls: e.event_users?.filter(e1 => e1.picture != null).
                 map(e1 => baseUrl + (e1.picture?.formats?.medium?.url || e1.picture?.formats?.thumbnail?.url))
         }));
+    },
+    async took(args) {
+      const { id, userId } = args;
+      const event = await strapi.service('api::event.event').findOne(id, {
+        filters :{
+          $and:[{
+            event_users: {
+              users_permissions_user: {
+                id: userId
+              }
+            }
+          }
+          ]
+        },
+        populate: ['event_users', 'event_users.users_permissions_user', 'votes']
+      })
+      strapi.log.info(JSON.stringify(event))
+      if(!event){
+        throw new Error("Invalid event")
+      }
+      return await strapi.service('api::event-user.event-user').update(event.event_users[0].id,{
+        data: {
+          tookIn: true
+        }
+      })
     }
 }));
 

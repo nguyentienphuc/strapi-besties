@@ -1835,7 +1835,7 @@
                                                             }
                                                           }
                                                         },
-                                                        "done": {
+                                                        "tookIn": {
                                                           "type": "boolean"
                                                         },
                                                         "createdAt": {
@@ -2362,7 +2362,7 @@
                                   }
                                 }
                               },
-                              "done": {
+                              "tookIn": {
                                 "type": "boolean"
                               },
                               "createdAt": {
@@ -4509,7 +4509,7 @@
                                                           }
                                                         }
                                                       },
-                                                      "done": {
+                                                      "tookIn": {
                                                         "type": "boolean"
                                                       },
                                                       "createdAt": {
@@ -5036,7 +5036,7 @@
                                 }
                               }
                             },
-                            "done": {
+                            "tookIn": {
                               "type": "boolean"
                             },
                             "createdAt": {
@@ -5289,7 +5289,7 @@
                         ],
                         "example": "string or id"
                       },
-                      "done": {
+                      "tookIn": {
                         "type": "boolean"
                       },
                       "createdAt": {
@@ -7168,7 +7168,7 @@
                                                           }
                                                         }
                                                       },
-                                                      "done": {
+                                                      "tookIn": {
                                                         "type": "boolean"
                                                       },
                                                       "createdAt": {
@@ -7695,7 +7695,7 @@
                                 }
                               }
                             },
-                            "done": {
+                            "tookIn": {
                               "type": "boolean"
                             },
                             "createdAt": {
@@ -9751,7 +9751,7 @@
                                                           }
                                                         }
                                                       },
-                                                      "done": {
+                                                      "tookIn": {
                                                         "type": "boolean"
                                                       },
                                                       "createdAt": {
@@ -10278,7 +10278,7 @@
                                 }
                               }
                             },
-                            "done": {
+                            "tookIn": {
                               "type": "boolean"
                             },
                             "createdAt": {
@@ -10542,7 +10542,7 @@
                         ],
                         "example": "string or id"
                       },
-                      "done": {
+                      "tookIn": {
                         "type": "boolean"
                       },
                       "createdAt": {
