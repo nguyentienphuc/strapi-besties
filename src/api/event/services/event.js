@@ -134,28 +134,21 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                   id: userId
                 }
               }
-            },
-            {
-              event_users: {
-                tookIn: true
-              }
             },{
-            end: {
-              $lt: currentDate
-            }
+            $or:[
+              {
+                event_users: {
+                  tookIn: true
+                }
+              },{
+                end: {
+                  $lt: currentDate
+                }
+              }
+            ]
           }
           ],
-          $or:[
-            {
-              event_users: {
-                tookIn: true
-              }
-            },{
-              end: {
-                $lt: currentDate
-              }
-            }
-          ]
+
         }
         const filtersNotDone = {
           $and:[{
