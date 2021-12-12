@@ -4,7 +4,8 @@
   "info": {
     "singularName": "event-user",
     "pluralName": "event-users",
-    "displayName": "EventUser"
+    "displayName": "EventUser",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,11 +25,15 @@
       "inversedBy": "event_users"
     },
     "picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "done": {
+      "type": "boolean"
     }
   }
 }

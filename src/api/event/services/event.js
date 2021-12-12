@@ -107,11 +107,12 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                     users_permissions_user: {
                         id: userId
                     }
-                }
+                },
+                done : true
             },
             {
                 end: {
-                    $gt: currentDate
+                    $lt: currentDate
                 }
             }]
 
@@ -122,11 +123,12 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
                     users_permissions_user: {
                         id: userId
                     }
-                }
+                },
+                done: false
             },
             {
                 end: {
-                    $lt: currentDate
+                    $gt: currentDate
                 }
             }]
 
