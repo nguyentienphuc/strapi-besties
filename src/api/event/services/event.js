@@ -163,12 +163,21 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
               }
             },
             {
-              event_users: {
-                tookIn: {
-                  $ne:true
+              $or:[
+                {
+                  event_users: {
+                    tookIn: false
+                  }
+                },{
+                  event_users: {
+                    tookIn: {
+                      $null:true
+                    }
+                  }
                 }
-              }
+              ]
             }
+
           ],
 
         }
