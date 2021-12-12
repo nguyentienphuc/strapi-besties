@@ -78,21 +78,16 @@ module.exports = createCoreService('api::event.event', ({ strapi }) => ({
     async galary(args) {
         const { results } = await strapi.service('api::event-user.event-user').find({
             filters: {
-                picture: {
-                    id: {
-                        $ne: null
-                    }
-                }
             },
             pagination: {
-                pageSize: 100,
+                pageSize: 1000,
                 page: 0
             },
             populate: ['picture']
         });
         // return results;
         return results
-            // .filter(e => e.event_users.filter(e1 => !!e1.picture).length > 0)
+            .filter(e => !!e.picture)
             .map(e => ({
                 ...e,
                 pictureUrl: getImageUrl(strapi, e.picture)
