@@ -37,9 +37,9 @@ module.exports = {
       handler: 'api::event.event.took',
     },
     {
-      method: 'POST',
-      path: '/events/:id/join',
-      handler: 'api::event.event.join',
+      method: 'GET',
+      path: '/events/mine',
+      handler: 'api::event.event.mine',
     }
   ]
 }
