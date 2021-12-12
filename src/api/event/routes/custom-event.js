@@ -17,6 +17,11 @@ module.exports = {
       handler: 'api::event.event.votes',
     },
     {
+      method: 'GET',
+      path: '/events/galary',
+      handler: 'api::event.event.galary',
+    },
+    {
       method: 'POST',
       path: '/events/:id/join',
       handler: 'api::event.event.join',
